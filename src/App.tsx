@@ -4,7 +4,7 @@ import {
   useHistory,
   Switch,
 } from "react-router-dom";
-import QueRoute from "./questions";
+import Question from "./questions";
 import "./App.css";
 import { useState } from "react";
 
@@ -76,7 +76,7 @@ export default function registration() {
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
-          <Route path="/Questions" exact component={QueRoute} />
+          <Route path="/Questions" exact component={Question} />
         </Switch>
       </Router>
     </div>

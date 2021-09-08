@@ -8,15 +8,17 @@ import {
 import Countries from "./countries";
 import Movies from "./movies";
 import Music from "./music";
+import { useState } from "react";
 
 export default function Question() {
   const username = window.localStorage.getItem("username");
+  const [disabled, setError] = useState(false);
+
   let history = useHistory();
 
   const handleClick = () => history.push("/");
-  const handleCountry = () => history.push("/country");
-  const handleMovies = () => history.push("/movie");
-  const handleMusic = () => history.push("/music");
+  const handleCategory = () => history.push("/country");
+ 
 
   return (
     <div className="App">
@@ -28,7 +30,7 @@ export default function Question() {
         <p>Player: {username}</p>
         <p>Select Category to start playing</p>
         <div className="button-class">
-        <button><Link to="/country">Countries</Link></button>
+        <button disabled={disabled}><Link to="/country">Countries</Link></button>
         <button><Link to="/movie">Movies</Link></button>
         <button><Link to="/music">Music</Link></button>
         </div>
