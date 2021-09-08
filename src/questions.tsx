@@ -12,13 +12,16 @@ import { useState } from "react";
 
 export default function Question() {
   const username = window.localStorage.getItem("username");
-  const [disabled, setError] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   let history = useHistory();
 
   const handleClick = () => history.push("/");
-  const handleCategory = () => history.push("/country");
- 
+  
+
+  function handleCategory() {
+    setDisable(true);
+  }
 
   return (
     <div className="App">
@@ -30,16 +33,22 @@ export default function Question() {
         <p>Player: {username}</p>
         <p>Select Category to start playing</p>
         <div className="button-class">
-        <button disabled={disabled}><Link to="/country">Countries</Link></button>
-        <button><Link to="/movie">Movies</Link></button>
-        <button><Link to="/music">Music</Link></button>
+          <button onClick={handleCategory} disabled={disable}>
+            <Link to="/country">Countries</Link>
+          </button>
+          <button>
+            <Link to="/movie">Movies</Link>
+          </button>
+          <button>
+            <Link to="/music">Music</Link>
+          </button>
         </div>
         <br></br>
         <button onClick={handleClick}>Log Out</button>
-<div></div>
+        <div></div>
         <Switch>
-        <Route path="/country">
-            <Countries/>
+          <Route path="/country">
+            <Countries />
           </Route>
           <Route path="/movie">
             <Movies />
@@ -47,10 +56,8 @@ export default function Question() {
           <Route path="/music">
             <Music />
           </Route>
-        
         </Switch>
       </Router>
     </div>
   );
 }
-

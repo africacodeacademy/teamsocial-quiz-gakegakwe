@@ -18,7 +18,6 @@ export default function Music() {
     return questions[indexOfItemInMyArray];
   };
 
-  
   const questions = [
     {
       questionText:

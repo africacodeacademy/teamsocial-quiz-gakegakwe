@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1> Team Social Quiz App</h1>
+        <h1> Team Social Quizz App</h1>
       </header>
       <h3>Register</h3>
       <form>
