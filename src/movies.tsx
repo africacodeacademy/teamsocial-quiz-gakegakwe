@@ -1,6 +1,20 @@
 import React, { useState } from "react";
 
 export default function Movies() {
+  function shuffle(array: any[]) {
+    var num = array.length,
+      temp,
+      index;
+    while (num > 0) {
+      index = Math.floor(Math.random() * num);
+      num--;
+
+      temp = array[num];
+      array[num] = array[index];
+      array[index] = temp;
+    }
+    return array;
+  }
   const questions = [
     {
       questionText: "When was Avengers-End Game released?",
@@ -95,6 +109,7 @@ export default function Movies() {
       setShowScore(true);
     }
   };
+  shuffle(questions );
   return (
     <div>
       {showScore ? (

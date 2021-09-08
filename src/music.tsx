@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 
 export default function Music() {
-  const alreadyDone: any[] = [];
+  function shuffle(array: any[]) {
+    var num = array.length,
+      temp,
+      index;
+    while (num > 0) {
+      index = Math.floor(Math.random() * num);
+      num--;
 
-  const randomValue = (questions: any) => {
-    if (alreadyDone.length === 0) {
-      for (var i = 0; i < questions.length; i++) alreadyDone.push(i);
+      temp = array[num];
+      array[num] = array[index];
+      array[index] = temp;
+     
     }
-
-    var randomValueIndex = Math.floor(Math.random() * alreadyDone.length);
-
-    var indexOfItemInMyArray = alreadyDone[randomValueIndex];
-
-    alreadyDone.splice(randomValueIndex, 1);
-
-    // Get the value
-    return questions[indexOfItemInMyArray];
-  };
-
+    return array;
+  }
   const questions = [
     {
       questionText:
@@ -111,7 +109,7 @@ export default function Music() {
       setShowScore(true);
     }
   };
-  randomValue(questions);
+  shuffle(questions );
   return (
     <div>
       {showScore ? (

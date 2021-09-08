@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export default function Countries() {
   function shuffle(array: any[]) {
+    
     var num = array.length,
       temp,
       index;
@@ -12,6 +13,7 @@ export default function Countries() {
       temp = array[num];
       array[num] = array[index];
       array[index] = temp;
+      
     }
     return array;
   }
@@ -106,8 +108,8 @@ export default function Countries() {
       setShowScore(true);
     }
   };
+shuffle(questions );
 
-  console.log(shuffle(questions ));
   return (
     <div>
       {showScore ? (
@@ -123,6 +125,7 @@ export default function Countries() {
             <div className="question-text">
               {questions[currentQuestion].questionText}
             </div>
+            
           </div>
           <div className="answer-section">
             {questions[currentQuestion].answerOptions.map((answerOption) => (
@@ -136,5 +139,6 @@ export default function Countries() {
         </>
       )}
     </div>
+    
   );
 }
