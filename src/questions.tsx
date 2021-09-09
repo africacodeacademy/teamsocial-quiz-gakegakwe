@@ -8,7 +8,6 @@ import {
 import Countries from "./countries";
 import Movies from "./movies";
 import Music from "./music";
-import { useState } from "react";
 
 export default function Question() {
   const username = window.localStorage.getItem("username");
@@ -16,12 +15,6 @@ export default function Question() {
   let history = useHistory();
 
   const handleClick = () => history.push("/");
-
-  function handleCategory(event: any) {
-    const { num } = event.target;
-    console.log(num);
-    window.localStorage.setItem("num", num);
-  }
 
   return (
     <div className="App">

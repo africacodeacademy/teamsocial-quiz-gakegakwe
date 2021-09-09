@@ -12,7 +12,6 @@ export default function Music() {
       temp = array[num];
       array[num] = array[index];
       array[index] = temp;
-     
     }
     return array;
   }
@@ -93,9 +92,15 @@ export default function Music() {
     },
   ];
 
+  const [question, setQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+
+  function handleChange(event: any) {
+    const { value } = event.target;
+    setQuestion(value);
+  }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -103,24 +108,44 @@ export default function Music() {
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
+    if (nextQuestion < question-1) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
     }
   };
-  shuffle(questions );
+  shuffle(questions);
+
   return (
     <div>
+      <div className="radio">
+        <input
+          id="5Qs"
+          value={5}
+          name="platform"
+          type="radio"
+          onChange={handleChange}
+        />
+        5 Questions
+        <input
+          id="7Qs"
+          value={7}
+          name="platform"
+          type="radio"
+          onChange={handleChange}
+        />
+        7 Questions
+      </div>
+
       {showScore ? (
         <div className="score-section">
-          You scored {score} out of {questions.length}
+          You scored {score} out of {question}
         </div>
       ) : (
         <>
           <div className="question-section">
             <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{questions.length}
+              <span>Question {currentQuestion + 1}</span>/{question}
             </div>
             <div className="question-text">
               {questions[currentQuestion].questionText}
