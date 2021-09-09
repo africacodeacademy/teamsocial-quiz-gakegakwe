@@ -12,15 +12,15 @@ import { useState } from "react";
 
 export default function Question() {
   const username = window.localStorage.getItem("username");
-  const [disable, setDisable] = useState(false);
 
   let history = useHistory();
 
   const handleClick = () => history.push("/");
-  
 
-  function handleCategory() {
-    setDisable(true);
+  function handleCategory(event: any) {
+    const { num } = event.target;
+    console.log(num);
+    window.localStorage.setItem("num", num);
   }
 
   return (
@@ -31,9 +31,11 @@ export default function Question() {
         </header>
 
         <p>Player: {username}</p>
+
         <p>Select Category to start playing</p>
+
         <div className="button-class">
-          <button onClick={handleCategory} disabled={disable}>
+          <button>
             <Link to="/country">Countries</Link>
           </button>
           <button>

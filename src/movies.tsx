@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 export default function Movies() {
   function shuffle(array: any[]) {
     var num = array.length,
@@ -105,6 +106,7 @@ export default function Movies() {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
+     
     } else {
       setShowScore(true);
     }
