@@ -1,20 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Movies() {
-  function shuffle(array: any[]) {
-    var num = array.length,
-      temp,
-      index;
-    while (num > 0) {
-      index = Math.floor(Math.random() * num);
-      num--;
-
-      temp = array[num];
-      array[num] = array[index];
-      array[index] = temp;
-    }
-    return array;
-  }
   const questions = [
     {
       questionText: "When was Avengers-End Game released?",
@@ -97,7 +84,20 @@ export default function Movies() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  function shuffle(array: any[]) {
+    var num = array.length,
+      temp,
+      index;
+    while (num > 0) {
+      index = Math.floor(Math.random() * num);
+      num--;
 
+      temp = array[num];
+      array[num] = array[index];
+      array[index] = temp;
+    }
+    return array;
+  }
   function handleChange(event: any) {
     const { value } = event.target;
     setQuestion(value);
@@ -108,7 +108,7 @@ export default function Movies() {
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < question-1) {
+    if (nextQuestion < question) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
@@ -138,9 +138,14 @@ export default function Movies() {
       </div>
 
       {showScore ? (
-        <div className="score-section">
-          You scored {score} out of {question}
-        </div>
+         <div>
+         <div className="score-section">
+           You scored {score} out of {question}
+         </div>
+         <button>
+         <Link to="/questions">Restart</Link>
+       </button>
+       </div>
       ) : (
         <>
           <div className="question-section">

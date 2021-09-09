@@ -1,22 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Countries() {
-  function shuffle(array: any[]) {
-    var num = array.length,
-      temp,
-      index;
-    while (num > 0) {
-      index = Math.floor(Math.random() * num);
-      num--;
-
-      temp = array[num];
-      array[num] = array[index];
-      array[index] = temp;
-    }
-    return array;
-  }
-
-  const questions = [
+  let questions = [
     {
       questionText: "What is the capital of France?",
       answerOptions: [
@@ -93,10 +79,40 @@ export default function Countries() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [randomQs,setRandomQs]=useState(questions);
+
+  function shuffle(array: any[]) {
+    var num = array.length,
+      temp,
+      index;
+    while (num > 0) {
+      index = Math.floor(Math.random() * num);
+      num--;
+
+      temp = array[num];
+      array[num] = array[index];
+      array[index] = temp;
+    }
+    return array;
+  }
 
   function handleChange(event: any) {
     const { value } = event.target;
     setQuestion(value);
+    if(value==5){
+      shuffle(questions);
+   questions.splice(5,5);
+          let temp=questions;
+       setRandomQs(temp);
+       console.log(randomQs);
+       console.log(temp);
+    }
+    else{
+      shuffle(questions);
+      questions.splice(7,3);
+     let temp= questions;
+     setRandomQs(temp);
+    }
   }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
@@ -111,8 +127,9 @@ export default function Countries() {
       setShowScore(true);
     }
   };
-  shuffle(questions);
 
+  console.log(questions);
+  console.log(randomQs);
   return (
     <div>
       <div className="radio">
@@ -135,8 +152,13 @@ export default function Countries() {
       </div>
 
       {showScore ? (
-        <div className="score-section">
-          You scored {score} out of {question}
+        <div>
+          <div className="score-section">
+            You scored {score} out of {question}
+          </div>
+          <button>
+            <Link to="/questions">Restart</Link>
+          </button>
         </div>
       ) : (
         <>
@@ -145,11 +167,11 @@ export default function Countries() {
               <span>Question {currentQuestion + 1}</span>/{question}
             </div>
             <div className="question-text">
-              {questions[currentQuestion].questionText}
+              {randomQs[currentQuestion].questionText}
             </div>
           </div>
           <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
+            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
               <button
                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
               >
