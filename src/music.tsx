@@ -53,6 +53,8 @@ export default function Music() {
       answerOptions: [
         { answerText: "1994", isCorrect: true },
         { answerText: "1998", isCorrect: false },
+        { answerText: "1995", isCorrect: false },
+        { answerText: "1999", isCorrect: false },
       ],
     },
     {
@@ -60,6 +62,7 @@ export default function Music() {
       answerOptions: [
         { answerText: "Chants ", isCorrect: true },
         { answerText: "Afrobeat", isCorrect: false },
+        { answerText: "Jazz ", isCorrect: false },
       ],
     },
     {
@@ -68,11 +71,13 @@ export default function Music() {
       answerOptions: [
         { answerText: "Weddings and harvest celebrations", isCorrect: true },
         { answerText: "Weddings and birthday celebrations", isCorrect: false },
+        { answerText: "None of the above", isCorrect: false },
       ],
     },
     {
       questionText: "African music is often heard along with _____.?",
       answerOptions: [
+        { answerText: "Rain", isCorrect: false },
         { answerText: "Dancing", isCorrect: true },
         { answerText: "Eating", isCorrect: false },
       ],
@@ -83,6 +88,8 @@ export default function Music() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [randomQs, setRandomQs] = useState(questions);
+
   function shuffle(array: any[]) {
     var num = array.length,
       temp,
@@ -100,6 +107,19 @@ export default function Music() {
   function handleChange(event: any) {
     const { value } = event.target;
     setQuestion(value);
+    if (value == 5) {
+      shuffle(questions);
+      questions.splice(5, 5);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
+    } else {
+      shuffle(questions);
+      questions.splice(7, 3);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
+    }
   }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
@@ -153,11 +173,11 @@ export default function Music() {
               <span>Question {currentQuestion + 1}</span>/{question}
             </div>
             <div className="question-text">
-              {questions[currentQuestion].questionText}
+              {randomQs[currentQuestion].questionText}
             </div>
           </div>
           <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
+            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
               <button
                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
               >

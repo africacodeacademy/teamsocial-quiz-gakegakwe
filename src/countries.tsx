@@ -42,6 +42,7 @@ export default function Countries() {
       questionText:
         "In what country are the world’s ten coldest cities located?",
       answerOptions: [
+        { answerText: "Alska", isCorrect: false },
         { answerText: "America", isCorrect: false },
         { answerText: "Russia", isCorrect: true },
       ],
@@ -56,6 +57,8 @@ export default function Countries() {
     {
       questionText: "What country does not use the dollar?",
       answerOptions: [
+        { answerText: "America", isCorrect: false },
+        { answerText: "Panama", isCorrect: false },
         { answerText: "India", isCorrect: true },
         { answerText: "Zimbabwe", isCorrect: false },
       ],
@@ -63,6 +66,8 @@ export default function Countries() {
     {
       questionText: "What is the world’s second largest country?",
       answerOptions: [
+        { answerText: "America", isCorrect: false },
+        { answerText: "India", isCorrect: false },
         { answerText: "Canada", isCorrect: true },
         { answerText: "China", isCorrect: false },
       ],
@@ -70,6 +75,8 @@ export default function Countries() {
     {
       questionText: "In what country does Arsenal play?",
       answerOptions: [
+        { answerText: "Spain", isCorrect: false },
+        { answerText: "Scotland", isCorrect: false },
         { answerText: "England", isCorrect: true },
         { answerText: "Scotland", isCorrect: false },
       ],
@@ -79,7 +86,7 @@ export default function Countries() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [randomQs,setRandomQs]=useState(questions);
+  const [randomQs, setRandomQs] = useState(questions);
 
   function shuffle(array: any[]) {
     var num = array.length,
@@ -99,19 +106,18 @@ export default function Countries() {
   function handleChange(event: any) {
     const { value } = event.target;
     setQuestion(value);
-    if(value==5){
+    if (value == 5) {
       shuffle(questions);
-   questions.splice(5,5);
-          let temp=questions;
-       setRandomQs(temp);
-       console.log(randomQs);
-       console.log(temp);
-    }
-    else{
+      questions.splice(5, 5);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
+    } else {
       shuffle(questions);
-      questions.splice(7,3);
-     let temp= questions;
-     setRandomQs(temp);
+      questions.splice(7, 3);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
     }
   }
 
@@ -128,8 +134,6 @@ export default function Countries() {
     }
   };
 
-  console.log(questions);
-  console.log(randomQs);
   return (
     <div>
       <div className="radio">

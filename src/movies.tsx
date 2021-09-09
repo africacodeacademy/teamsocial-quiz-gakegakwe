@@ -6,6 +6,8 @@ export default function Movies() {
     {
       questionText: "When was Avengers-End Game released?",
       answerOptions: [
+        { answerText: "2021", isCorrect: false },
+        { answerText: "2018", isCorrect: false },
         { answerText: "2020", isCorrect: false },
         { answerText: "2019", isCorrect: true },
       ],
@@ -36,6 +38,7 @@ export default function Movies() {
       questionText:
         "What pop vocal group performs at the wedding in Bridesmaids?",
       answerOptions: [
+        { answerText: "Phillip", isCorrect: false },
         { answerText: "Wilson Phillips", isCorrect: true },
         { answerText: "The Phillips", isCorrect: false },
       ],
@@ -74,6 +77,8 @@ export default function Movies() {
     {
       questionText: "Who wrote the screenplay for Rocky?",
       answerOptions: [
+        { answerText: "Steven Seagull", isCorrect: false },
+        { answerText: "John Wick", isCorrect: false },
         { answerText: "Sylvester Stallone", isCorrect: true },
         { answerText: "Rambo", isCorrect: false },
       ],
@@ -84,6 +89,8 @@ export default function Movies() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [randomQs, setRandomQs] = useState(questions);
+
   function shuffle(array: any[]) {
     var num = array.length,
       temp,
@@ -101,6 +108,19 @@ export default function Movies() {
   function handleChange(event: any) {
     const { value } = event.target;
     setQuestion(value);
+    if (value == 5) {
+      shuffle(questions);
+      questions.splice(5, 5);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
+    } else {
+      shuffle(questions);
+      questions.splice(7, 3);
+      let temp = questions;
+      setRandomQs(temp);
+      console.log(randomQs);
+    }
   }
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -153,11 +173,11 @@ export default function Movies() {
               <span>Question {currentQuestion + 1}</span>/{question}
             </div>
             <div className="question-text">
-              {questions[currentQuestion].questionText}
+              {randomQs[currentQuestion].questionText}
             </div>
           </div>
           <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
+            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
               <button
                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
               >
