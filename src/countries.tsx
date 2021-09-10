@@ -6,6 +6,7 @@ export default function Countries() {
   const [question, setQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [showQs,setShowQs]=useState(false);
   const [score, setScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
 
@@ -28,21 +29,21 @@ export default function Countries() {
     const { value } = event.target;
 
     setQuestion(value);
-    if (value == 5) {
-
+    if (value === 5) {
       shuffle(questions);
 
-      questions.splice(5, 5);
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
-    }
-     else {
+      setShowQs(true);
+    } else {
       shuffle(questions);
-      questions.splice(7, 3);
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
+      setShowQs(true);
     }
   }
 
@@ -58,7 +59,7 @@ export default function Countries() {
       setShowScore(true);
     }
   };
-console.log("A");
+
   return (
     <div>
       <div className="radio">
@@ -90,8 +91,10 @@ console.log("A");
           </button>
         </div>
       ) : (
-        <>
-          <div className="question-section">
+        showQs? (
+        <div>
+          <>
+          <div className="question-section" >
             <div className="question-count">
               <span>Question {currentQuestion + 1}</span>/{question}
             </div>
@@ -109,6 +112,8 @@ console.log("A");
             ))}
           </div>
         </>
+        </div>
+        ):null
       )}
     </div>
   );

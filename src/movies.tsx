@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { questions } from "./moviesQs";
 
-export default function Movies() {
+export default function Countries() {
   const [question, setQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [showQs,setShowQs]=useState(false);
   const [score, setScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
 
@@ -23,23 +24,29 @@ export default function Movies() {
     }
     return array;
   }
+
   function handleChange(event: any) {
     const { value } = event.target;
+
     setQuestion(value);
-    if (value == 5) {
+    if (value === 5) {
       shuffle(questions);
-      questions.splice(5, 5);
+
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
+      setShowQs(true);
     } else {
       shuffle(questions);
-      questions.splice(7, 3);
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
+      setShowQs(true);
     }
   }
+
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1);
@@ -52,59 +59,62 @@ export default function Movies() {
       setShowScore(true);
     }
   };
-  shuffle(questions);
 
   return (
     <div>
-      <div className="radio">
-        <input
-          id="5Qs"
-          value={5}
-          name="platform"
-          type="radio"
-          onChange={handleChange}
-        />
-        5 Questions
-        <input
-          id="7Qs"
-          value={7}
-          name="platform"
-          type="radio"
-          onChange={handleChange}
-        />
-        7 Questions
-      </div>
-
-      {showScore ? (
-        <div>
-          <div className="score-section">
-            You scored {score} out of {question}
-          </div>
-          <button>
-            <Link to="/questions">Restart</Link>
-          </button>
-        </div>
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{question}
-            </div>
-            <div className="question-text">
-              {randomQs[currentQuestion].questionText}
-            </div>
-          </div>
-          <div className="answer-section">
-            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
-              <button
-                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+    <div className="radio">
+      <input
+        id="5Qs"
+        value={5}
+        name="platform"
+        type="radio"
+        onChange={handleChange}
+      />
+      5 Questions
+      <input
+        id="7Qs"
+        value={7}
+        name="platform"
+        type="radio"
+        onChange={handleChange}
+      />
+      7 Questions
     </div>
-  );
+
+    {showScore ? (
+      <div>
+        <div className="score-section">
+          You scored {score} out of {question}
+        </div>
+        <button>
+          <Link to="/questions">Restart</Link>
+        </button>
+      </div>
+    ) : (
+      showQs? (
+      <div>
+        <>
+        <div className="question-section" >
+          <div className="question-count">
+            <span>Question {currentQuestion + 1}</span>/{question}
+          </div>
+          <div className="question-text">
+            {randomQs[currentQuestion].questionText}
+          </div>
+        </div>
+        <div className="answer-section">
+          {randomQs[currentQuestion].answerOptions.map((answerOption) => (
+            <button
+              onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
+            >
+              {answerOption.answerText}
+            </button>
+          ))}
+        </div>
+      </>
+      </div>
+      ):null
+    )}
+  </div>
+);
 }

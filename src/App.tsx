@@ -16,14 +16,14 @@ function App() {
     event.preventDefault();
 
     if (error === " ") {
-      console.log("starting");
+   
 
       history.push({
         pathname: "/Questions",
       });
     } else {
       window.alert("Please Register First");
-      console.log("not starting");
+    
     }
   }
 

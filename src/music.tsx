@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { questions } from "./musicQs";
 
-export default function Music() {
+export default function Countries() {
   const [question, setQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [showQs,setShowQs]=useState(false);
   const [score, setScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
 
@@ -23,24 +24,28 @@ export default function Music() {
     }
     return array;
   }
+
   function handleChange(event: any) {
     const { value } = event.target;
+
     setQuestion(value);
-    if (value == 5) {
+    if (value === 5) {
       shuffle(questions);
-      questions.splice(5, 5);
+
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
+      setShowQs(true);
     } else {
       shuffle(questions);
-      questions.splice(7, 3);
+     
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
+      setShowQs(true);
     }
   }
-
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1);
@@ -53,8 +58,7 @@ export default function Music() {
       setShowScore(true);
     }
   };
-  shuffle(questions);
-  console.log(questions)
+
 
   return (
     <div>
@@ -87,8 +91,10 @@ export default function Music() {
           </button>
         </div>
       ) : (
-        <>
-          <div className="question-section">
+        showQs? (
+        <div>
+          <>
+          <div className="question-section" >
             <div className="question-count">
               <span>Question {currentQuestion + 1}</span>/{question}
             </div>
@@ -106,6 +112,8 @@ export default function Music() {
             ))}
           </div>
         </>
+        </div>
+        ):null
       )}
     </div>
   );
