@@ -17,7 +17,7 @@ jobs:
     - checkout
     - run: npm install
     - run: npm install react-router-dom
-   
+    - run: npm i --save-dev @types/react-router-dom
     
 
  build:
@@ -27,5 +27,5 @@ jobs:
     - checkout
     - run: npm install
     - run: npm install react-router-dom
-    - run: npm install --save react-router-dom
+    - run: npm i --save-dev @types/react-router-dom
     - run: npm run build
