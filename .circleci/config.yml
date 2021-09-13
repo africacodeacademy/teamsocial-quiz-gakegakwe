@@ -20,11 +20,13 @@ jobs:
         name: install dependencies 
         command: npm install
     - run:
-        name: install dependencies 
+        name: install react-router-dom 
         command: npm install --save react-router-dom
+
     - run:
-        name: tests
-        command: npm run test
+        name: save-dev @types/react-router-dom    
+        command: npm i --save-dev @types/react-router-dom
+    
 
  build:
   docker:
