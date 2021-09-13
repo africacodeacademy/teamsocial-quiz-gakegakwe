@@ -17,6 +17,9 @@ jobs:
     - checkout
     - run:
         name: install dependencies 
+        command: npm install
+    - run:
+        name: install dependencies 
         command: npm install --save react-router-dom
     
 
