@@ -20,6 +20,9 @@ jobs:
         name: install dependencies 
         command: npm install
     - run:
+        name: install dependencies 
+        command: npm i --save-dev @types/react-router-dom
+    - run:
         name: tests
         command: npm run test
 
