@@ -8,6 +8,8 @@ import Question from "./questions";
 import "./App.css";
 import { useState } from "react";
 
+declare module 'react-router';
+
 function App() {
   let history = useHistory();
   const [error, setError] = useState("");
