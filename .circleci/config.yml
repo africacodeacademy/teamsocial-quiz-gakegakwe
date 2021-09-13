@@ -15,12 +15,8 @@ jobs:
     - image: cimg/node:14.17.3
   steps:
     - checkout
-    - run:
-        name: install dependencies 
-        command: npm install
-    - run:
-        name: install dependencies 
-        command: npm install --save react-router-dom
+    - run: npm install
+    - run: npm install --save react-router-dom
     
 
  build:
@@ -28,9 +24,5 @@ jobs:
     - image: cimg/node:14.17.3
   steps:
     - checkout
-    - run:
-        name: install dependencies
-        command: npm install --save react-router-dom
-    - run:
-        name: build
-        command: npm run build
+    - run: npm install --save react-router-dom
+    - run: npm run build
