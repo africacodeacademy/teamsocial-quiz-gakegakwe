@@ -20,26 +20,15 @@ jobs:
         name: install dependencies 
         command: npm install
    
-    - run:
-        name: tests
-        command: npm run test
-
  build:
   docker:
     - image: cimg/node:14.17.3
   steps:
     - checkout
     - run:
-        name: install react-router-dom 
-        command: npm install --save react-router-dom
-
-    - run:
         name: save-dev @types/react-router-dom    
         command: npm i --save-dev @types/react-router-dom 
-        
-    - run:
-        name: install dependencies
-        command: npm install
+
     - run:
         name: build
         command: npm run build
