@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { questions } from "./countryQs";
 
 export default function Countries() {
-  const [question, setQuestion] = useState(0);
+  const [noQuestion, setNoQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showQs,setShowQs]=useState(false);
+  const [showQs, setShowQs] = useState(false);
   const [score, setScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
 
@@ -28,18 +28,17 @@ export default function Countries() {
   function handleChange(event: any) {
     const { value } = event.target;
 
-    setQuestion(value);
+    setNoQuestion(value);
     if (value === 5) {
       shuffle(questions);
 
-     
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
+      console.log(randomQs); //0-4
       setShowQs(true);
     } else {
       shuffle(questions);
-     
+
       let temp = questions;
       setRandomQs(temp);
       console.log(randomQs);
@@ -53,7 +52,7 @@ export default function Countries() {
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < question) {
+    if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
@@ -84,37 +83,37 @@ export default function Countries() {
       {showScore ? (
         <div>
           <div className="score-section">
-            You scored {score} out of {question}
+            You scored {score} out of {noQuestion}
           </div>
           <button>
             <Link to="/questions">Restart</Link>
           </button>
         </div>
-      ) : (
-        showQs? (
+      ) : showQs ? (
         <div>
           <>
-          <div className="question-section" >
-            <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{question}
+            <div className="question-section">
+              <div className="question-count">
+                <span>Question {currentQuestion + 1}</span>/{noQuestion}
+              </div>
+              <div className="question-text">
+                {randomQs[currentQuestion].questionText}
+              </div>
             </div>
-            <div className="question-text">
-              {randomQs[currentQuestion].questionText}
+            <div className="answer-section">
+              {randomQs[currentQuestion].answerOptions.map((answerOption) => (
+                <button
+                  onClick={() =>
+                    handleAnswerOptionClick(answerOption.isCorrect)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
             </div>
-          </div>
-          <div className="answer-section">
-            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
-              <button
-                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
-          </div>
-        </>
+          </>
         </div>
-        ):null
-      )}
+      ) : null}
     </div>
   );
 }
