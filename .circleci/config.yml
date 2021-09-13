@@ -5,8 +5,9 @@ workflows:
   build-and-deploy:
    jobs:
     - React
-    - build
-      
+    - build:
+        requires:
+         - React
       
 
 jobs:
