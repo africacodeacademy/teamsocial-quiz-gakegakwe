@@ -3,29 +3,26 @@ version: 2.1
 workflows:
   version: 2
   build-and-deploy:
-   jobs:
-    - React
-    - build:
-        requires:
-         - React
+    jobs:
+      - React
+      - build:
+          requires:
+            - React
 
 jobs:
- React:
-  docker:
-    - image: cimg/node:14.17.3
-  steps:
-    - checkout
-    - run: npm install
-    - run: npm install react-router-dom
-    - run: npm i --save-dev @types/react-router-dom
-    
+  React:
+    docker:
+      - image: cimg/node:14.17.3
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm i --save-dev @types/react-router-dom
 
- build:
-  docker:
-    - image: cimg/node:14.17.3
-  steps:
-    - checkout
-    - run: npm install
-    - run: npm install react-router-dom
-    - run: npm i --save-dev @types/react-router-dom
-    - run: npm run build
+  build:
+    docker:
+      - image: cimg/node:14.17.3
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm i --save-dev @types/react-router-dom
+      - run: npm run build
