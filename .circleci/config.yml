@@ -24,5 +24,6 @@ jobs:
     - image: cimg/node:14.17.3
   steps:
     - checkout
+    - run: npm install
     - run: npm install --save react-router-dom
     - run: npm run build
