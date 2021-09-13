@@ -11,24 +11,20 @@ workflows:
       
 
 jobs:
- test:
+ react:
   docker:
     - image: cimg/node:14.17.3
   steps:
     - checkout
     - run:
         name: install dependencies 
-        command: npm install
+        command: npm i --save-dev @types/react-router-dom
    
  build:
   docker:
     - image: cimg/node:14.17.3
   steps:
     - checkout
-    - run:
-        name: save-dev @types/react-router-dom    
-        command: npm i --save-dev @types/react-router-dom 
-
     - run:
         name: build
         command: npm run build
