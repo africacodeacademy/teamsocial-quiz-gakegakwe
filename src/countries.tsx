@@ -58,7 +58,9 @@ export default function Countries() {
     if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
-      if (score >= pass) {
+      if (score > pass) {
+        setReults("Passed");
+      } else if (score === pass) {
         setReults("Passed");
       } else {
         setReults("Failed");
