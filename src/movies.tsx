@@ -6,9 +6,12 @@ export default function Countries() {
   const [noQuestion, setNoQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showQs,setShowQs]=useState(false);
+  const [showQs, setShowQs] = useState(false);
   const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
+  const [results, setReults] = useState("");
+  const pass = 6;
 
   function shuffle(array: any[]) {
     var num = array.length,
@@ -32,89 +35,95 @@ export default function Countries() {
     if (value === 5) {
       shuffle(questions);
 
-     
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
       setShowQs(true);
     } else {
       shuffle(questions);
-     
+
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
       setShowQs(true);
     }
   }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(score + randomQs[currentQuestion].points);
     }
+
+    setTotalScore(totalScore + randomQs[currentQuestion].points);
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
+      if (score >= pass) {
+        setReults("You Passed");
+      } else {
+        setReults("You Failed");
+      }
       setShowScore(true);
     }
   };
 
   return (
     <div>
-    <div className="radio">
-      <input
-        id="5Qs"
-        value={5}
-        name="platform"
-        type="radio"
-        onChange={handleChange}
-      />
-      5 Questions
-      <input
-        id="7Qs"
-        value={7}
-        name="platform"
-        type="radio"
-        onChange={handleChange}
-      />
-      7 Questions
-    </div>
+      <div className="radio">
+        <input
+          id="5Qs"
+          value={5}
+          name="platform"
+          type="radio"
+          onChange={handleChange}
+        />
+        5 Questions
+        <input
+          id="7Qs"
+          value={7}
+          name="platform"
+          type="radio"
+          onChange={handleChange}
+        />
+        7 Questions
+      </div>
 
-    {showScore ? (
-      <div>
-        <div className="score-section">
-          You scored {score} out of {noQuestion}
-        </div>
-        <button>
-          <Link to="/questions">Restart</Link>
-        </button>
-      </div>
-    ) : (
-      showQs? (
-      <div>
-        <>
-        <div className="question-section" >
-          <div className="question-count">
-            <span>Question {currentQuestion + 1}</span>/{noQuestion}
+      {showScore ? (
+        <div>
+          <div className="score-section">
+            
+          You {results} 
+            {score} out of {totalScore}
           </div>
-          <div className="question-text">
-            {randomQs[currentQuestion].questionText}
-          </div>
+          <button>
+            <Link to="/questions">Restart</Link>
+          </button>
         </div>
-        <div className="answer-section">
-          {randomQs[currentQuestion].answerOptions.map((answerOption) => (
-            <button
-              onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-            >
-              {answerOption.answerText}
-            </button>
-          ))}
+      ) : showQs ? (
+        <div>
+          <>
+            <div className="question-section">
+              <div className="question-count">
+                <span>Question {currentQuestion + 1}</span>/{noQuestion}
+              </div>
+              <div className="question-text">
+                {randomQs[currentQuestion].questionText}
+              </div>
+            </div>
+            <div className="answer-section">
+              {randomQs[currentQuestion].answerOptions.map((answerOption) => (
+                <button
+                  onClick={() =>
+                    handleAnswerOptionClick(answerOption.isCorrect)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
+            </div>
+          </>
         </div>
-      </>
-      </div>
-      ):null
-    )}
-  </div>
-);
+      ) : null}
+    </div>
+  );
 }

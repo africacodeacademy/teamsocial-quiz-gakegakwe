@@ -8,7 +8,10 @@ export default function Countries() {
   const [showScore, setShowScore] = useState(false);
   const [showQs, setShowQs] = useState(false);
   const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
+  const [results, setReults] = useState("");
+  const pass = 6;
 
   function shuffle(array: any[]) {
     var num = array.length,
@@ -34,27 +37,32 @@ export default function Countries() {
 
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs); //0-4
       setShowQs(true);
     } else {
       shuffle(questions);
 
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
       setShowQs(true);
     }
   }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(score + randomQs[currentQuestion].points);
     }
+
+    setTotalScore(totalScore + randomQs[currentQuestion].points);
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
+      if (score >= pass) {
+        setReults("You Passed");
+      } else {
+        setReults("You Failed");
+      }
       setShowScore(true);
     }
   };
@@ -83,7 +91,9 @@ export default function Countries() {
       {showScore ? (
         <div>
           <div className="score-section">
-            You scored {score} out of {noQuestion}
+            
+            You {results} 
+            {score} out of {totalScore}
           </div>
           <button>
             <Link to="/questions">Restart</Link>
