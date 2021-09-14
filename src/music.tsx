@@ -40,7 +40,7 @@ export default function Countries() {
       setShowQs(true);
     } else {
       shuffle(questions);
-     
+
       let temp = questions;
       setRandomQs(temp);
       setShowQs(true);
@@ -59,9 +59,9 @@ export default function Countries() {
       setCurrentQuestion(nextQuestion);
     } else {
       if (score >= pass) {
-        setReults("You Passed");
+        setReults("Passed");
       } else {
-        setReults("You Failed");
+        setReults("Failed");
       }
       setShowScore(true);
     }
@@ -91,39 +91,37 @@ export default function Countries() {
       {showScore ? (
         <div>
           <div className="score-section">
-            
-          You {results} 
-            {score} out of {totalScore}
+            You {results}, Score: {score}/{totalScore}
           </div>
           <button>
             <Link to="/questions">Restart</Link>
           </button>
         </div>
-      ) : (
-        showQs? (
+      ) : showQs ? (
         <div>
           <>
-          <div className="question-section" >
-            <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{noQuestion}
+            <div className="question-section">
+              <div className="question-count">
+                <span>Question {currentQuestion + 1}</span>/{noQuestion}
+              </div>
+              <div className="question-text">
+                {randomQs[currentQuestion].questionText}
+              </div>
             </div>
-            <div className="question-text">
-              {randomQs[currentQuestion].questionText}
+            <div className="answer-section">
+              {randomQs[currentQuestion].answerOptions.map((answerOption) => (
+                <button
+                  onClick={() =>
+                    handleAnswerOptionClick(answerOption.isCorrect)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
             </div>
-          </div>
-          <div className="answer-section">
-            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
-              <button
-                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
-          </div>
-        </>
+          </>
         </div>
-        ):null
-      )}
+      ) : null}
     </div>
   );
 }

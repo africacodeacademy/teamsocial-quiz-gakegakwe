@@ -59,9 +59,9 @@ export default function Countries() {
       setCurrentQuestion(nextQuestion);
     } else {
       if (score >= pass) {
-        setReults("You Passed");
+        setReults("Passed");
       } else {
-        setReults("You Failed");
+        setReults("Failed");
       }
       setShowScore(true);
     }
@@ -91,9 +91,7 @@ export default function Countries() {
       {showScore ? (
         <div>
           <div className="score-section">
-            
-          You {results} 
-            {score} out of {totalScore}
+            You {results}, Score: {score}/{totalScore}
           </div>
           <button>
             <Link to="/questions">Restart</Link>
