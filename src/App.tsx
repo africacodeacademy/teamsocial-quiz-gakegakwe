@@ -8,7 +8,7 @@ import Question from "./questions";
 import "./App.css";
 import { useState } from "react";
 
-import Countries from "./countries";
+
 
 function App() {
   let history = useHistory();
