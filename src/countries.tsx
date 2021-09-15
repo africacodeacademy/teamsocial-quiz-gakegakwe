@@ -1,6 +1,13 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  useHistory,
+  Switch,
+  Link,
+} from "react-router-dom";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { questions } from "./countryQs";
+import Question from "./questions";
 
 export default function Countries() {
   const [noQuestion, setNoQuestion] = useState(0);
@@ -71,6 +78,7 @@ export default function Countries() {
 
   return (
     <div>
+ 
       <div className="radio">
         <input
           id="5Qs"
@@ -124,6 +132,7 @@ export default function Countries() {
           </>
         </div>
       ) : null}
+    
     </div>
   );
 }

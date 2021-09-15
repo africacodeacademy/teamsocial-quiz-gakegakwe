@@ -8,7 +8,7 @@ import Question from "./questions";
 import "./App.css";
 import { useState } from "react";
 
-declare module 'react-router';
+import Countries from "./countries";
 
 function App() {
   let history = useHistory();
@@ -18,14 +18,11 @@ function App() {
     event.preventDefault();
 
     if (error === " ") {
-   
-
       history.push({
         pathname: "/Questions",
       });
     } else {
       window.alert("Please Register First");
-    
     }
   }
 
@@ -79,6 +76,15 @@ export default function registration() {
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/Questions" exact component={Question} />
+          <Route path="/country">
+            <Question />
+          </Route>
+          <Route path="/movie">
+            <Question />
+          </Route>
+          <Route path="/music">
+            <Question />
+          </Route>
         </Switch>
       </Router>
     </div>
