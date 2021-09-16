@@ -65,10 +65,15 @@ export default function Countries() {
     } else {
       if (score > pass) {
         setReults("Passed");
+        setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
       } else if (score === pass) {
         setReults("Passed");
+        setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
       } else {
         setReults("Failed");
+        setMeme(
+          "https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif"
+        );
       }
       setShowScore(true);
     }
@@ -100,6 +105,7 @@ export default function Countries() {
           <div className="score-section">
             You {results}, Score: {score}/{totalScore}
           </div>
+          <img src={meme} alt=""></img>
           <button>
             <Link to="/questions">Restart</Link>
           </button>
