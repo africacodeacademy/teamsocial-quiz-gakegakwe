@@ -64,15 +64,17 @@ export default function Countries() {
     } else {
       if (score > pass) {
         setReults("Passed");
-        setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
+        setMeme(
+          "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
+        );
       } else if (score === pass) {
         setReults("Passed");
-        setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
+        setMeme(
+          "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
+        );
       } else {
         setReults("Failed");
-        setMeme(
-          "https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif"
-        );
+        setMeme("https://c.tenor.com/GxgspcAiWKIAAAAS/loser-looser.gif");
       }
 
       setShowScore(true);
