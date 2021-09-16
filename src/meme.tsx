@@ -1,29 +1,31 @@
-import got from "got";
-import cheerio from "cheerio";
+import axios from 'axios';
+import cheerio from 'cheerio';
 
-export async function wrong() {
-  const URL = "https://tenor.com/search/wrong-answer-gifs";
-  try {
-    const memesArray: {
-      Image_href: string | undefined; // get the href attribute
-      img_src: string;
-    }[] = [];
-    const response = await got(URL);
-    const html = response.body;
+function MemeGen(){
+const url = 'https://tenor.com/search/wrong-answer-gifs'; 
+const AxiosInstance = axios.create(); 
 
-    const $ = cheerio.load(html);
-    const memes = $("img");
 
-    memes.each((index, element) => {
-      memesArray.push({
-        Image_href: $(element).attr("src"), // get the href attribute
-        img_src: "link ",
+AxiosInstance.get(url)
+  .then( 
+    response => {
+      const html = response.data; 
+      const $ = cheerio.load(html); 
+
+      const image= $('img'); 
+      const imageArray: { Image_href: string | undefined; }[]=[];
+
+      image.each((index, element) => {
+        imageArray.push({
+           Image_href: $(element).attr('src'), // get the href attribute 
+         
+        });
+      
       });
-    });
-   
-    console.log(memesArray);
-  } catch (error) {
-    console.error(error);
-  }
+
+      console.log(imageArray);
+    }
+  )
+  .catch(console.error);
 }
-wrong();
+export default MemeGen;

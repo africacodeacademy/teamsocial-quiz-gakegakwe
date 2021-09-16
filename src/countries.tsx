@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { questions } from "./countryQs";
+import MemeGen from "./meme";
 
 export default function Countries() {
   const [noQuestion, setNoQuestion] = useState(0);
@@ -11,6 +12,7 @@ export default function Countries() {
   const [totalScore, setTotalScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
   const [results, setReults] = useState("");
+  const [meme, setMeme] = useState("");
   const pass = 6;
 
   function shuffle(array: any[]) {
@@ -50,6 +52,9 @@ export default function Countries() {
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + randomQs[currentQuestion].points);
+      setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
+    } else {
+      setMeme("https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif");
     }
 
     setTotalScore(totalScore + randomQs[currentQuestion].points);
@@ -68,7 +73,7 @@ export default function Countries() {
       setShowScore(true);
     }
   };
-
+  MemeGen();
   return (
     <div>
       <div className="radio">
@@ -103,6 +108,7 @@ export default function Countries() {
         <div>
           <>
             <div className="question-section">
+              Score: {score}
               <div className="question-count">
                 <span>Question {currentQuestion + 1}</span>/{noQuestion}
               </div>
@@ -120,6 +126,7 @@ export default function Countries() {
                   {answerOption.answerText}
                 </button>
               ))}
+              <img src={meme} alt=""></img>
             </div>
           </>
         </div>

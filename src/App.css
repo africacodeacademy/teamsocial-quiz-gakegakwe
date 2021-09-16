@@ -155,4 +155,12 @@ button:focus {
 button svg {
   margin-right: 5px;
 }
+.meme {
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  justify-content: center;
+  height:5px;
+ 
+}
 

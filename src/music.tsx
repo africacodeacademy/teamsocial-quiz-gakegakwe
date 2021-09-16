@@ -104,6 +104,7 @@ export default function Countries() {
         <div>
           <>
             <div className="question-section">
+              Score: {score}
               <div className="question-count">
                 <span>Question {currentQuestion + 1}</span>/{noQuestion}
               </div>
