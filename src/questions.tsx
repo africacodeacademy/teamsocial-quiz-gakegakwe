@@ -14,7 +14,10 @@ export function Question() {
   const username = window.localStorage.getItem("username");
   let history = useHistory();
 
-  const handleClick = () => history.push("/");
+  const handleClick = () =>{
+    localStorage.clear();
+     history.push("/");
+    }
 
   function handleCountry(event: any) {
     history.push({

@@ -29,14 +29,24 @@ function App() {
 
   function handleChange(event: any) {
     event.preventDefault();
-
     const { value } = event.target;
+
+    var regex = /^[A-Za-z0-9 ]+$/;
+
+    var isChars = regex.test(value);
+
+    var isNum = value.match(".*\\d.*");
+
     if (value.length === 0) {
       setError("Your username can't be empty");
     } else if (value.length > 14) {
       setError("Your username can't be more than 14 characters");
     } else if (value.length < 2) {
       setError("Your username can't be less than 2 characters");
+    } else if (!isChars) {
+      setError("No special characters please");
+    } else if (isNum) {
+      setError("No numbers please");
     } else {
       setError(" ");
       window.localStorage.setItem("username", value);
