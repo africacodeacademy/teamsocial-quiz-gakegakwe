@@ -23,12 +23,12 @@ export function Question() {
   }
   function handleMovies(event: any) {
     history.push({
-      pathname: "/country",
+      pathname: "/movie",
     });
   }
   function handleMusic(event: any) {
     history.push({
-      pathname: "/country",
+      pathname: "/music",
     });
   }
 

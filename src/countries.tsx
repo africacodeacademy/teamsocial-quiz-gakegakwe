@@ -14,7 +14,7 @@ export default function Countries() {
   const [randomQs, setRandomQs] = useState(questions);
   const [results, setReults] = useState("");
   const [meme, setMeme] = useState("");
-  const pass = 6;
+  const pass = 0.5;
   const username = window.localStorage.getItem("username");
 
   window.onbeforeunload = (event) => {
@@ -77,17 +77,14 @@ export default function Countries() {
     if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
-      if (score > pass) {
+      let perc=score/totalScore;
+      if (perc >= pass) {
         setReults("Passed");
         setMeme(
           "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
         );
-      } else if (score === pass) {
-        setReults("Passed");
-        setMeme(
-          "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
-        );
-      } else {
+      } 
+      else {
         setReults("Failed");
         setMeme("https://c.tenor.com/GxgspcAiWKIAAAAM/loser-looser.gif");
       }
