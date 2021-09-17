@@ -92,7 +92,7 @@ export default function Countries() {
   };
 
   return (
-    <div>
+    <div className="App">
        <header className="App-header">
         <h1> Team Social Quiz App</h1>
       </header>

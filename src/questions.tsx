@@ -50,15 +50,15 @@ export function Question() {
         <button onClick={handleMovies}>Movies</button>
         <button onClick={handleMusic}>Music</button>
       </div>
-      <br></br>
+     <div className="log-button">
       <button onClick={handleClick}>Log Out</button>
-      <div></div>
+     </div>
     </div>
   );
 }
 export default function router() {
   return (
-    <div className="App">
+    
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
@@ -68,6 +68,6 @@ export default function router() {
           <Route path="/music" exact component={Music} />
         </Switch>
       </Router>
-    </div>
+
   );
 }

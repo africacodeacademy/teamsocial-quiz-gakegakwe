@@ -82,7 +82,7 @@ function App() {
 }
 export default function router() {
   return (
-    <div className="App">
+   
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
@@ -92,6 +92,6 @@ export default function router() {
           <Route path="/music" exact component={Music} />
         </Switch>
       </Router>
-    </div>
+   
   );
 }
