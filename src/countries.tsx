@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { questions } from "./countryQs";
-import MemeGen from "./meme";
+
 
 export default function Countries() {
   const [noQuestion, setNoQuestion] = useState(0);
@@ -66,7 +66,7 @@ export default function Countries() {
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + randomQs[currentQuestion].points);
-      setMeme("https://c.tenor.com/ZF1HMGkdTkIAAAAC/correctanswer.gif");
+      setMeme("https://c.tenor.com/jSIE9SltWYUAAAAM/thats-right-seth.gif");
     } else {
       setMeme("https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif");
     }

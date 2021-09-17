@@ -3,7 +3,7 @@ import {
   Route,
   useHistory,
   Switch,
-  Link,
+
 } from "react-router-dom";
 import Countries from "./countries";
 import Movies from "./movies";
