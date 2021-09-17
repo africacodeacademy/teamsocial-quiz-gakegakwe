@@ -8,12 +8,24 @@ export default function Countries() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [showQs, setShowQs] = useState(false);
+  const [showOptions, setShowOptions] = useState(true);
   const [score, setScore] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
   const [results, setReults] = useState("");
   const [meme, setMeme] = useState("");
   const pass = 6;
+  const username = window.localStorage.getItem("username");
+
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+
+    e.preventDefault();
+    if (e) {
+      e.returnValue = "";
+    }
+    return "";
+  };
 
   function shuffle(array: any[]) {
     var num = array.length,
@@ -32,6 +44,8 @@ export default function Countries() {
 
   function handleChange(event: any) {
     const { value } = event.target;
+
+    setShowOptions(false);
 
     setNoQuestion(value);
     if (value === 5) {
@@ -80,9 +94,16 @@ export default function Countries() {
       setShowScore(true);
     }
   };
-  MemeGen();
+
   return (
     <div>
+      <header className="App-header">
+        <h1> Team Social Quiz App</h1>
+      </header>
+      <p>Player: {username}</p>
+      {showOptions?(
+        <div>
+      <p>Please select number of Questions to start playing.</p>
       <div className="radio">
         <input
           id="5Qs"
@@ -101,7 +122,8 @@ export default function Countries() {
         />
         7 Questions
       </div>
-
+       </div>
+       ):null}
       {showScore ? (
         <div>
           <div className="score-section">

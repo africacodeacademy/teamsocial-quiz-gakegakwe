@@ -4,11 +4,12 @@ import {
   useHistory,
   Switch,
 } from "react-router-dom";
-import Question from "./questions";
-import "./App.css";
 import { useState } from "react";
-
-
+import "./App.css";
+import Question from "./questions";
+import Countries from "./countries";
+import Movies from "./movies";
+import Music from "./music";
 
 function App() {
   let history = useHistory();
@@ -69,22 +70,16 @@ function App() {
     </div>
   );
 }
-export default function registration() {
+export default function router() {
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/Questions" exact component={Question} />
-          <Route path="/country">
-            <Question />
-          </Route>
-          <Route path="/movie">
-            <Question />
-          </Route>
-          <Route path="/music">
-            <Question />
-          </Route>
+          <Route path="/country" exact component={Countries} />
+          <Route path="/movie" exact component={Movies} />
+          <Route path="/music" exact component={Music} />
         </Switch>
       </Router>
     </div>
