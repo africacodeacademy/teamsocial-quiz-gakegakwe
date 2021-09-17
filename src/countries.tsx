@@ -68,7 +68,7 @@ export default function Countries() {
       setScore(score + randomQs[currentQuestion].points);
       setMeme("https://c.tenor.com/jSIE9SltWYUAAAAM/thats-right-seth.gif");
     } else {
-      setMeme("https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif");
+      setMeme("	https://c.tenor.com/gMUNdvAGvo8AAAAj/wrong-anthony-field.gif");
     }
 
     setTotalScore(totalScore + randomQs[currentQuestion].points);

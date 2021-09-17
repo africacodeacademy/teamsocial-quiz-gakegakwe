@@ -67,7 +67,7 @@ export default function Countries() {
       setScore(score + randomQs[currentQuestion].points);
       setMeme("https://c.tenor.com/jSIE9SltWYUAAAAM/thats-right-seth.gif");
     } else {
-      setMeme("https://c.tenor.com/Ha6D75HkFywAAAAC/simpsons-wrong-answer.gif");
+      setMeme("	https://c.tenor.com/gMUNdvAGvo8AAAAj/wrong-anthony-field.gif");
     }
 
     setTotalScore(totalScore + randomQs[currentQuestion].points);
@@ -77,7 +77,7 @@ export default function Countries() {
       setCurrentQuestion(nextQuestion);
     } else {
       let perc=score/totalScore;
-      if (perc > pass) {
+      if (perc >= pass) {
         setReults("Passed");
         setMeme(
           "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
