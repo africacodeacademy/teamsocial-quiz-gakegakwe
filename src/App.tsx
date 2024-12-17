@@ -4,9 +4,12 @@ import {
   useHistory,
   Switch,
 } from "react-router-dom";
-import Question from "./questions";
-import "./App.css";
 import { useState } from "react";
+import "./App.css";
+import Question from "./questions";
+import Countries from "./countries";
+import Movies from "./movies";
+import Music from "./music";
 
 function App() {
   let history = useHistory();
@@ -16,27 +19,34 @@ function App() {
     event.preventDefault();
 
     if (error === " ") {
-      console.log("starting");
-
       history.push({
         pathname: "/Questions",
       });
     } else {
       window.alert("Please Register First");
-      console.log("not starting");
     }
   }
 
   function handleChange(event: any) {
     event.preventDefault();
-
     const { value } = event.target;
+
+    var regex = /^[A-Za-z0-9 ]+$/;
+
+    var isChars = regex.test(value);
+
+    var isNum = value.match(".*\\d.*");
+
     if (value.length === 0) {
       setError("Your username can't be empty");
     } else if (value.length > 14) {
       setError("Your username can't be more than 14 characters");
     } else if (value.length < 2) {
       setError("Your username can't be less than 2 characters");
+    } else if (!isChars) {
+      setError("No special characters please");
+    } else if (isNum) {
+      setError("No numbers please");
     } else {
       setError(" ");
       window.localStorage.setItem("username", value);
@@ -70,15 +80,18 @@ function App() {
     </div>
   );
 }
-export default function registration() {
+export default function router() {
   return (
-    <div className="App">
+   
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/Questions" exact component={Question} />
+          <Route path="/country" exact component={Countries} />
+          <Route path="/movie" exact component={Movies} />
+          <Route path="/music" exact component={Music} />
         </Switch>
       </Router>
-    </div>
+   
   );
 }

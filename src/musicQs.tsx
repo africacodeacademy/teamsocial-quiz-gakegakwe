@@ -5,7 +5,9 @@ export const questions = [
       answerOptions: [
         { answerText: "Michael Jackson", isCorrect: false },
         { answerText: "Mariah Carey", isCorrect: true },
+        { answerText: "Rihanna", isCorrect: false },
       ],
+      points: 3,
     },
     {
       questionText: "What was Freddie Mercury‘s real name?",
@@ -13,6 +15,7 @@ export const questions = [
         { answerText: "Fredrick Bulsara", isCorrect: false },
         { answerText: "Farrokh Bulsara", isCorrect: true },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -21,6 +24,7 @@ export const questions = [
         { answerText: "Kesha", isCorrect: true },
         { answerText: "Katt Perry", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText: " Eminem‘s 8 Mile is named after a road in Detroit?",
@@ -28,6 +32,7 @@ export const questions = [
         { answerText: "True", isCorrect: true },
         { answerText: "False", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -35,7 +40,10 @@ export const questions = [
       answerOptions: [
         { answerText: "1999", isCorrect: true },
         { answerText: "2000", isCorrect: false },
+        { answerText: "2001", isCorrect: false },
+        { answerText: "2002", isCorrect: false },
       ],
+      points: 4,
     },
     {
       questionText: "Where was Tupac Shakur born?",
@@ -43,6 +51,7 @@ export const questions = [
         { answerText: "New York", isCorrect: true },
         { answerText: "Detroit", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText: "Black Coffee the S.A artist began his career at?",
@@ -52,6 +61,7 @@ export const questions = [
         { answerText: "1995", isCorrect: false },
         { answerText: "1999", isCorrect: false },
       ],
+      points: 4,
     },
     {
       questionText: "Which of these is the oldest form of African music?",
@@ -60,6 +70,7 @@ export const questions = [
         { answerText: "Afrobeat", isCorrect: false },
         { answerText: "Jazz ", isCorrect: false },
       ],
+      points: 3,
     },
     {
       questionText:
@@ -69,6 +80,7 @@ export const questions = [
         { answerText: "Weddings and birthday celebrations", isCorrect: false },
         { answerText: "None of the above", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText: "African music is often heard along with _____.?",
@@ -76,6 +88,8 @@ export const questions = [
         { answerText: "Rain", isCorrect: false },
         { answerText: "Dancing", isCorrect: true },
         { answerText: "Eating", isCorrect: false },
+        { answerText: "Meetings", isCorrect: false },
       ],
+      points: 4,
     },
   ];

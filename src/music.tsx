@@ -2,12 +2,29 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { questions } from "./musicQs";
 
-export default function Music() {
-  const [question, setQuestion] = useState(0);
+export default function Countries() {
+  const [noQuestion, setNoQuestion] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [showQs, setShowQs] = useState(false);
+  const [showOptions, setShowOptions] = useState(true);
   const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
   const [randomQs, setRandomQs] = useState(questions);
+  const [results, setReults] = useState("");
+  const [meme, setMeme] = useState("");
+  const pass = 0.5;
+  const username = window.localStorage.getItem("username");
+
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+
+    e.preventDefault();
+    if (e) {
+      e.returnValue = "";
+    }
+    return "";
+  };
 
   function shuffle(array: any[]) {
     var num = array.length,
@@ -23,41 +40,66 @@ export default function Music() {
     }
     return array;
   }
+
   function handleChange(event: any) {
     const { value } = event.target;
-    setQuestion(value);
-    if (value == 5) {
+
+    setShowOptions(false);
+
+    setNoQuestion(value);
+    if (value === 5) {
       shuffle(questions);
-      questions.splice(5, 5);
+
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
+      setShowQs(true);
     } else {
       shuffle(questions);
-      questions.splice(7, 3);
+
       let temp = questions;
       setRandomQs(temp);
-      console.log(randomQs);
+      setShowQs(true);
     }
   }
 
   const handleAnswerOptionClick = (isCorrect: boolean) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(score + randomQs[currentQuestion].points);
+      setMeme("https://c.tenor.com/jSIE9SltWYUAAAAM/thats-right-seth.gif");
+    } else {
+      setMeme("	https://c.tenor.com/gMUNdvAGvo8AAAAj/wrong-anthony-field.gif");
     }
 
+    setTotalScore(totalScore + randomQs[currentQuestion].points);
+
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < question) {
+    if (nextQuestion < noQuestion) {
       setCurrentQuestion(nextQuestion);
     } else {
+      let perc=score/totalScore;
+      if (perc >= pass) {
+        setReults("Passed");
+        setMeme(
+          "https://c.tenor.com/fnXQrBSCagcAAAAj/congrats-congratulations.gif"
+        );
+      } else {
+        setReults("Failed");
+        setMeme("https://c.tenor.com/GxgspcAiWKIAAAAS/loser-looser.gif");
+      }
+
       setShowScore(true);
     }
   };
-  shuffle(questions);
-  console.log(questions)
 
   return (
-    <div>
+    <div className="App">
+       <header className="App-header">
+        <h1> Team Social Quiz App</h1>
+      </header>
+      <p>Player: {username}</p>
+      {showOptions?(
+        <div>
+      <p>Please select number of Questions to start playing.</p>
       <div className="radio">
         <input
           id="5Qs"
@@ -76,37 +118,46 @@ export default function Music() {
         />
         7 Questions
       </div>
+       </div>
+       ):null}
 
       {showScore ? (
         <div>
           <div className="score-section">
-            You scored {score} out of {question}
+            You {results}, Score: {score}/{totalScore}
           </div>
+          <img src={meme} alt=""></img>
           <button>
             <Link to="/questions">Restart</Link>
           </button>
         </div>
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{question}
+      ) : showQs ? (
+        <div>
+          <>
+            <div className="question-section">
+              Score: {score}
+              <div className="question-count">
+                <span>Question {currentQuestion + 1}</span>/{noQuestion}
+              </div>
+              <div className="question-text">
+                {randomQs[currentQuestion].questionText}
+              </div>
             </div>
-            <div className="question-text">
-              {randomQs[currentQuestion].questionText}
+            <div className="answer-section">
+              {randomQs[currentQuestion].answerOptions.map((answerOption) => (
+                <button
+                  onClick={() =>
+                    handleAnswerOptionClick(answerOption.isCorrect)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
+              <img src={meme} alt=""></img>
             </div>
-          </div>
-          <div className="answer-section">
-            {randomQs[currentQuestion].answerOptions.map((answerOption) => (
-              <button
-                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+          </>
+        </div>
+      ) : null}
     </div>
   );
 }

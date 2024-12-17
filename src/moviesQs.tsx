@@ -7,6 +7,7 @@ export const questions = [
         { answerText: "2020", isCorrect: false },
         { answerText: "2019", isCorrect: true },
       ],
+      points: 4,
     },
     {
       questionText:
@@ -15,6 +16,7 @@ export const questions = [
         { answerText: "“Rose lad”", isCorrect: false },
         { answerText: "“Rosebud”", isCorrect: true },
       ],
+      points: 2,
     },
     {
       questionText: "What’s the name of the skyscraper in Die Hard?",
@@ -22,6 +24,7 @@ export const questions = [
         { answerText: "Nakatomi Plaza", isCorrect: true },
         { answerText: "Nakatomo Plaza", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText: "In The Matrix, does Neo take the red pill?",
@@ -29,6 +32,7 @@ export const questions = [
         { answerText: "True", isCorrect: true },
         { answerText: "False", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -38,6 +42,7 @@ export const questions = [
         { answerText: "Wilson Phillips", isCorrect: true },
         { answerText: "The Phillips", isCorrect: false },
       ],
+      points: 3,
     },
     {
       questionText: "What is the highest-grossing R-rated movie of all time?",
@@ -45,6 +50,7 @@ export const questions = [
         { answerText: "Joker", isCorrect: true },
         { answerText: "Django", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -53,6 +59,7 @@ export const questions = [
         { answerText: "Wildebeasts", isCorrect: true },
         { answerText: "Buffalos", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -60,7 +67,10 @@ export const questions = [
       answerOptions: [
         { answerText: "Boat", isCorrect: true },
         { answerText: "Gun", isCorrect: false },
+        { answerText: "Frying Pan", isCorrect: false },
+        { answerText: "Spear", isCorrect: false },
       ],
+      points: 2,
     },
     {
       questionText:
@@ -68,7 +78,9 @@ export const questions = [
       answerOptions: [
         { answerText: "Hercules in New York ", isCorrect: true },
         { answerText: "Hercules 1970", isCorrect: false },
+        { answerText: "Hercules", isCorrect: false },
       ],
+      points: 3,
     },
     {
       questionText: "Who wrote the screenplay for Rocky?",
@@ -78,5 +90,6 @@ export const questions = [
         { answerText: "Sylvester Stallone", isCorrect: true },
         { answerText: "Rambo", isCorrect: false },
       ],
+      points: 4,
     },
   ];
